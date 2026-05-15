@@ -91,8 +91,30 @@ public class Ejercicio2 {
         
     }
     
-    public static void mostrarRecetas(){
-        
+    /**
+     * Esta función toma la información de nuestras recetas a partir de un HashMap que contiene dicha información
+     *   y muestra todos los datos debidamente
+     * @param recetas HashMap con la información de las recetas
+     */
+    public static void mostrarRecetas(HashMap<String,String> recetas){
+        for (String nombreReceta : recetas.keySet()){
+            // 1- La información de la receta proviene del value del key set, el cual viene separado por '|'
+            String[] informacionReceta = recetas.get(nombreReceta).split("\\|");
+            /*
+                Una vez separada la información mediante el caracter '|' podemos guardar la información necesarias 
+                 en otros dos arrays, uno para los ingredientes y otro para los pasos a seguir
+            */
+            String[] ingredientes = informacionReceta[0].split(";");
+            String[] pasos = informacionReceta[1].split(";");
+            System.out.println("Para la receta: " + nombreReceta+ "\n");
+            for (int i = 0; i < ingredientes.length; i++){
+                System.out.println("Ingrediente " + (i+1) + " - " + ingredientes[i]);
+            }
+            System.out.println("Pasos a seguir\n");
+            for (int i = 0; i < pasos.length; i++){
+                System.out.println("Paso " + (i+1) + " - " + pasos[i]);
+            }
+        }
     }
     
     
