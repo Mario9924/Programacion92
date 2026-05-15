@@ -122,13 +122,17 @@ public class Ejercicio2 {
         nuevaReceta.putAll(recetas);
         Scanner reader = new Scanner(System.in);
         System.out.println("Pasamos a añadir la receta indicada");
-            String ingredientes = "";
-            String pasos = "";
+            String ingredientes = ""; // guardamos todos los ingredientes seguidos
+            String pasos = ""; // guardamos todos los ingredientes seguidos
             String informacionIn = "";
+            /*
+                Guarda la información de los String ingredientes y pasos con una | de seperación
+                    ya que lo necesitamos más adelante para añadirlo al HashMap y al fichero de recetas correspondiente
+            */
             String valueHashMap = "";
             int opcionIn = 0;
-            // Añadimos los ingredientes que queramos
             
+            // Añadimos los ingredientes que queramos
             while(true){
                 System.err.println("Introduce el nombre del ingrediente necesario: ");
                 informacionIn = reader.nextLine();
@@ -136,10 +140,12 @@ public class Ejercicio2 {
                 opcionIn = reader.nextInt();
                 if (opcionIn == 0){
                     System.out.println("Continuamos!\n");
-                    pasos += informacionIn + ";";
+                    // Si vamos a seguir tenemos que añadir el delimitador ';' detrás de cada palabra introducida
+                    ingredientes += informacionIn + ";";
                 } else {
                     System.out.println("Pasamos al siguiente punto.");
-                    pasos += informacionIn;
+                    // Si no vamos a guardar más información, el último ingrediente no tiene que tener ningún delimitador
+                    ingredientes += informacionIn;
                     break;
                 }
             }   
@@ -154,19 +160,23 @@ public class Ejercicio2 {
                 opcionIn = reader.nextInt();
                 if (opcionIn == 0){
                     System.out.println("Continuamos!\n");
+                    // Si vamos a seguir tenemos que añadir el delimitador ';' detrás de cada palabra introducida
                     pasos += informacionIn + ";";
                 } else {
                     System.out.println("Pasamos al siguiente punto.");
+                    // Si no vamos a guardar más información, el último paso no tiene que tener ningún delimitador
                     pasos += informacionIn;
                     break;
                 }
             }
+            // Guardamos en el string correspondiente la informacion de los ingredientes y recetas, se usará más adelante
             valueHashMap = ingredientes + "|" + pasos;
+            
             // Guardamos la nueva receta en nuestro HashMap
             recetas.put(nombreIn, valueHashMap);
             
-            // Guardamos la nueva receta en nuestro fichero
-            escribirReceta(valueHashMap);
+            // Guardamos la nueva receta en nuestro fichero gracias al nombre introducido por el usuario y la combinación de ingredientes y pasos anterior
+            escribirReceta(nombreIn + "\\|" + valueHashMap);
             System.out.println("Perfecto, hemos añadido tu receta al recetario");
             
         
@@ -184,7 +194,9 @@ public class Ejercicio2 {
             String[] informacionReceta = recetas.get(nombreReceta).split("\\|");
             /*
                 Una vez separada la información mediante el caracter '|' podemos guardar la información necesarias 
-                 en otros dos arrays, uno para los ingredientes y otro para los pasos a seguir
+                 en otros dos arrays, uno para los ingredientes y otro para los pasos a seguir.
+                 
+                De este modo podemos mostrar la información de forma más sencilla
             */
             String[] ingredientes = informacionReceta[0].split(";");
             String[] pasos = informacionReceta[1].split(";");
@@ -199,6 +211,10 @@ public class Ejercicio2 {
         }
     }
     
+    /**
+     * Esta función permite añadir una receta al recetario, solo necesitamos la información formateada correctamente para incluirlo en el fichero
+     * @param informacionReceta String con el formato NombreReceta|ingrediente1;ingredienteN|paso1;pasoN
+     */
     public static void escribirReceta(String informacionReceta){
         // FileWriter ( File objetoTipoFile, Charset tipoCodificación, boolean append )
         try {
@@ -215,7 +231,7 @@ public class Ejercicio2 {
     }
     
     
-    public static void buscarIngrediente(String ingrediente){
+    public static void buscarIngrediente(String ingredienteIn){
         
     }
 }
