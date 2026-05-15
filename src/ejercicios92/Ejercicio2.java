@@ -2,6 +2,9 @@ package ejercicios92;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -122,19 +125,21 @@ public class Ejercicio2 {
             String ingredientes = "";
             String pasos = "";
             String informacionIn = "";
+            String valueHashMap = "";
             int opcionIn = 0;
             // Añadimos los ingredientes que queramos
             
             while(true){
                 System.err.println("Introduce el nombre del ingrediente necesario: ");
                 informacionIn = reader.nextLine();
-                ingredientes += informacionIn+";";
                 System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
                 opcionIn = reader.nextInt();
                 if (opcionIn == 0){
                     System.out.println("Continuamos!\n");
+                    pasos += informacionIn + ";";
                 } else {
                     System.out.println("Pasamos al siguiente punto.");
+                    pasos += informacionIn;
                     break;
                 }
             }   
@@ -145,21 +150,25 @@ public class Ejercicio2 {
             while (true){
                 System.err.println("Introduce el paso necesario para la receta: ");
                 informacionIn = reader.nextLine();
-                pasos += informacionIn + ";";
                 System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
                 opcionIn = reader.nextInt();
                 if (opcionIn == 0){
                     System.out.println("Continuamos!\n");
+                    pasos += informacionIn + ";";
                 } else {
                     System.out.println("Pasamos al siguiente punto.");
+                    pasos += informacionIn;
                     break;
                 }
             }
+            valueHashMap = ingredientes + "|" + pasos;
+            // Guardamos la nueva receta en nuestro HashMap
+            recetas.put(nombreIn, valueHashMap);
             
-            recetas.put(nombreIn, ingredientes + "|" + pasos);
-            
+            // Guardamos la nueva receta en nuestro fichero
+            escribirReceta(valueHashMap);
             System.out.println("Perfecto, hemos añadido tu receta al recetario");
-        
+            
         
         return nuevaReceta;
     }
@@ -187,6 +196,21 @@ public class Ejercicio2 {
             for (int i = 0; i < pasos.length; i++){
                 System.out.println("Paso " + (i+1) + " - " + pasos[i]);
             }
+        }
+    }
+    
+    public static void escribirReceta(String informacionReceta){
+        // FileWriter ( File objetoTipoFile, Charset tipoCodificación, boolean append )
+        try {
+            File fichero = new File(".\\src\\ficheros\\recetas.txt");
+            FileWriter fw = new FileWriter(fichero, Charset.forName("ISO-8859-1"), true);
+            fw.write(informacionReceta + "\n");
+            fw.close();
+            System.out.println("Fichero escrito correctamente");
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        } catch (Exception e) {
+            System.out.println("Error desconocido");
         }
     }
     
