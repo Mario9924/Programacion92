@@ -87,8 +87,81 @@ public class Ejercicio2 {
         return recetas;
     }
     
-    public static void addRecipe(){
+    /**
+     * Esta función comprueba la existencia de una receta en nuestro recetario
+     * @param recetas un HashMap con la información completa del recetario
+     * @param nombreIn el nombre de la nueva receta
+     * @return true si existe / false si no existe
+     */
+    public static boolean comprobarNombreReceta(HashMap<String,String> recetas, String nombreIn){
+        boolean nombreRepetido = false;
+        HashSet<String> nombresRecetas = new HashSet<>();
+        for (String receta : recetas.keySet()){
+            nombresRecetas.add(receta.replace(" ", "").toLowerCase());
+        }
         
+        if (nombresRecetas.contains(nombreIn.toLowerCase().replace(" ", ""))){
+            nombreRepetido = true;
+        }
+        
+        return nombreRepetido;
+    }
+    
+    /**
+     * Esta función permite junto a la función comprobarNombreReceta() el crear una receta
+     * @param recetas HashMap con la información de todas las recetas
+     * @param nombreIn nombre de la receta
+     * @return otro HashMap con la información actualizada
+     */
+    public static HashMap<String,String> addRecipe(HashMap<String,String> recetas, String nombreIn){
+        HashMap<String, String> nuevaReceta = new HashMap<>();
+        // Volcamos la información que ya teníamos en el HashMap con el que vamos a trabajar ahora
+        nuevaReceta.putAll(recetas);
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Pasamos a añadir la receta indicada");
+            String ingredientes = "";
+            String pasos = "";
+            String informacionIn = "";
+            int opcionIn = 0;
+            // Añadimos los ingredientes que queramos
+            
+            while(true){
+                System.err.println("Introduce el nombre del ingrediente necesario: ");
+                informacionIn = reader.nextLine();
+                ingredientes += informacionIn+";";
+                System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
+                opcionIn = reader.nextInt();
+                if (opcionIn == 0){
+                    System.out.println("Continuamos!\n");
+                } else {
+                    System.out.println("Pasamos al siguiente punto.");
+                    break;
+                }
+            }   
+            
+            // Añadimos los pasos
+            informacionIn = "";
+            opcionIn = 0;
+            while (true){
+                System.err.println("Introduce el paso necesario para la receta: ");
+                informacionIn = reader.nextLine();
+                pasos += informacionIn + ";";
+                System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
+                opcionIn = reader.nextInt();
+                if (opcionIn == 0){
+                    System.out.println("Continuamos!\n");
+                } else {
+                    System.out.println("Pasamos al siguiente punto.");
+                    break;
+                }
+            }
+            
+            recetas.put(nombreIn, ingredientes + "|" + pasos);
+            
+            System.out.println("Perfecto, hemos añadido tu receta al recetario");
+        
+        
+        return nuevaReceta;
     }
     
     /**
