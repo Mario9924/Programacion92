@@ -4,6 +4,7 @@ package ejercicios92;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -133,5 +134,24 @@ public class Ejercicio1 {
                 System.out.println("Día: " + key);
             }
         } while(true);
+    }
+    
+    /**
+     * Esta función devuelve un HashSet con la fecha de las entradas del diario
+     * @param informacion HashMap con el diario volcado
+     * @return HashSet con un listado de los días de las entradas
+     */
+    public static HashSet<String> listadoEntradas(HashMap<String, String> informacion){
+        HashSet<String> entradas = new HashSet<>();
+        
+        for (String info : informacion.keySet()){
+            entradas.add(info);
+        }
+        
+        return entradas;
+    }
+    
+    public static void addEntrada(){
+    
     }
 }
