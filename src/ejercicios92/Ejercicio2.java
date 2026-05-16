@@ -230,8 +230,37 @@ public class Ejercicio2 {
         }
     }
     
-    
-    public static void buscarIngrediente(String ingredienteIn){
+    /**
+     * Esta función devuelve aquellas recetas que contengan un ingrediente introducido
+     * @param recetas HashMap con la información de todas las recetas disponibles
+     * @param ingredienteIn ingrediente que haya elegido el usuario
+     */
+    public static void buscarIngrediente(HashMap<String,String> recetas, String ingredienteIn){
+        //Guardamos en un HashMap temporal la información encontrada hasta el momento
+            HashMap<String, String> recetasEncontradas = new HashMap<>();
+            
+        // Una vez recibido el HashMap con la información pasamos a buscar el ingrediente
+        for (String informacion : recetas.keySet()){
+            
+            // Separamos la sección de recetas de su 
+            String[] datos = recetas.get(informacion).split("\\|");
+            String[] ingredientes = datos[0].split(";");
+            for (int i = 0; i < ingredientes.length; i++){
+                if (ingredientes[i].replace(" ", "").equalsIgnoreCase(ingredienteIn.replace(" ", ""))){
+                    // El ingrediente se encuentra
+                    System.out.println("Ingrediente encontrado");
+                    recetasEncontradas.put(informacion, recetas.get(informacion));
+                    break;
+                }
+            }
+        }
         
+        // Una vez terminemos de buscar las recetas las mostramos
+        if (recetasEncontradas.isEmpty()){
+            System.out.println("Lo sentimos pero no encontramos ninguna receta con el ingrediente \""+ ingredienteIn + "\"");
+        } else {
+            // Como hemos encontrado al menos una receta, mostramos la información por pantalla
+            mostrarRecetas(recetasEncontradas); // Ya teníamos una función que nos lo muestra de forma más amigable
+        }
     }
 }
