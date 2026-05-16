@@ -12,9 +12,10 @@ import java.util.Scanner;
 
 /**
  *
- * Ejercicio 1 - Diario Permitiremos - Escribir en el diario si la fecha de la
- * entrada no está repetida - Obtener la entrada del diario en función de la
- * fecha
+ * Ejercicio 1 - Diario Permitiremos 
+ * 
+ * - Escribir en el diario si la fecha de la entrada no está repetida 
+ * - Obtener la entrada del diario en función de la fecha
  *
  * @author Mario Gutiérrez
  * @see
@@ -30,7 +31,37 @@ public class Ejercicio1 {
         // Declaración de variables
         Scanner reader = new Scanner(System.in);
         HashMap<String, String> diario = leerFichero();
-        leerDiario(diario);
+        int opcionIn = 0;
+        boolean continuar = true;
+        while (continuar){
+            try {
+                System.out.println("Bienvenid@ a tu diario, elige una opción por favor:"
+                        + "\n1- Escribir en el diario"
+                        + "\n2- Leer una entrada del diario"
+                        + "\nOtro - Salir del programa");
+                opcionIn = reader.nextInt();
+                switch (opcionIn){
+                    case 1:
+                        System.out.println("Vamos a añadir una entrada al diario.");
+                        addEntrada(diario);
+                        break;
+                    case 2:
+                        System.out.println("Has elegido leer una entrada del diario.");
+                        leerEntrada(diario);
+                        break;
+                    default:
+                        System.out.println("Hasta luego!!");
+                        continuar = false;
+                        break;
+                }
+            } catch (InputMismatchException ime){
+                System.err.println("El dato introducido es inválido: " + ime);
+                reader.nextLine();
+            } catch (Exception e){
+                System.err.println("Error inesperado: " + e);
+                reader.nextLine();
+            }
+        }
 
         
     }
@@ -45,7 +76,7 @@ public class Ejercicio1 {
         HashMap<String, String> informacion = new HashMap<>();
 
         try {
-            File diario = new File(".\\src\\Ficheros\\diario.txt");
+            File diario = new File(".\\src\\ficheros\\diario.txt");
             Scanner rf = new Scanner(diario);
             while (rf.hasNext()) {
                 String[] lineaDiario = rf.nextLine().split(";");
@@ -79,8 +110,7 @@ public class Ejercicio1 {
         Scanner reader = new Scanner(System.in);
         String entradaElegida = "";
         int opcionIn = 0;
-        while (true) {
-            try {
+        try {
                 for (String key : informacion.keySet()) {
                     System.out.println("Día: " + key);
                     System.out.println("¿Quieres leer esta entrada? Pulsa 0 para leer, pulsa 1 para seguir:");
@@ -92,7 +122,6 @@ public class Ejercicio1 {
                     }
                 }
                 System.out.println(informacion.get(entradaElegida));
-                break;
             } catch (InputMismatchException ime) {
                 System.err.println("El dato introducido es inválido: " + ime);
                 reader.nextLine();
@@ -100,7 +129,6 @@ public class Ejercicio1 {
                 System.err.println("ERROR INESPERADO: " + e);
                 reader.nextLine();
             }
-        } 
         
     }
 
