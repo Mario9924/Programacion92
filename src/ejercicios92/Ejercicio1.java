@@ -32,71 +32,7 @@ public class Ejercicio1 {
         HashMap<String, String> diario = leerFichero();
         leerDiario(diario);
 
-        String dia = "";
-        String mes = "";
-        String anio = "";
-        String fecha = "";
-        int informacionIn = 0;
-        String entradaDiario = "";
-
-        do {
-            try {
-                fecha = "";
-
-                // Pedimos el dia 
-                do {
-                    System.out.println("Dame el dÃ­a de la semana de la entrada del diario: ");
-                    informacionIn = reader.nextInt();
-                } while (informacionIn <= 0 || informacionIn > 31);
-
-                if (informacionIn < 10) {
-                    dia = "0" + informacionIn;
-                } else {
-                    dia = informacionIn + "";
-                }
-
-                // Pedimos el mes 
-                do {
-                    System.out.println("Dame el mes de la entrada del diario: ");
-                    informacionIn = reader.nextInt();
-                } while (informacionIn <= 0 || informacionIn > 12);
-
-                if (informacionIn < 10) {
-                    mes = "0" + informacionIn;
-                } else {
-                    mes = informacionIn + "";
-                }
-
-                // Pedimos el aÃ±o 
-                do {
-                    System.out.println("Dame el aÃ±o de la entrada del diario: ");
-                    informacionIn = reader.nextInt();
-                } while (informacionIn <= 2000 || informacionIn > 2999);
-
-                anio = informacionIn + "";
-
-                fecha = dia + "/" + mes + "/" + anio;
-                System.out.println("La fecha de entrada es: " + fecha);
-
-                if (diario.containsKey(fecha)) {
-                    System.out.println("Lo sentimos, ya hay una entrada para ese dÃ­a");
-                }
-
-            } catch (InputMismatchException ime) {
-                System.err.println("El dato introducido es invÃ¡lido: " + ime);
-            } catch (Exception e) {
-                System.err.println("ERROR INESPERADO: " + e);
-            }
-        } while (diario.containsKey(fecha));
-
-        reader.nextLine();
-        // Pedimos al usuario lo que ha pasado ese dÃ­a
-
-        System.out.println("Introduce lo que haya pasado ese dÃ­a por favor: ");
-        entradaDiario = reader.nextLine();
-
-        diario.put(fecha, entradaDiario);
-        System.out.println("Se ha creado la entrada en tu diario");
+        
     }
 
     /**
@@ -143,7 +79,7 @@ public class Ejercicio1 {
         Scanner reader = new Scanner(System.in);
         String entradaElegida = "";
         int opcionIn = 0;
-        do {
+        while (true) {
             try {
                 for (String key : informacion.keySet()) {
                     System.out.println("Día: " + key);
@@ -160,11 +96,12 @@ public class Ejercicio1 {
             } catch (InputMismatchException ime) {
                 System.err.println("El dato introducido es inválido: " + ime);
                 reader.nextLine();
-            } catch (Exception e){
-                System.err.println("ERROR INESPERADO: " +e);
+            } catch (Exception e) {
+                System.err.println("ERROR INESPERADO: " + e);
                 reader.nextLine();
             }
-        } while (true);
+        } 
+        
     }
 
     /**
@@ -183,15 +120,84 @@ public class Ejercicio1 {
         return entradas;
     }
 
+    /**
+     * Esta función permite añadir una entrada al diario siempre y cuando no exista previamente.
+     *  Se mostrará por pantalla si se ha podido añadir o no
+     * @param informacion HashMap con la información del fichero
+     */
     public static void addEntrada(HashMap<String, String> informacion) {
+        Scanner reader = new Scanner(System.in);
+        HashSet<String> listado = listadoEntradas(informacion);
+        String fecha = transformarFecha();
         
+        if (listado.contains(fecha)){
+            System.out.println("Lo sentimos pero la fecha introducida ya existe en el diario.");
+        } else {
+            // Añadimos la entrada correspondiente
+            String entradaDiario = "";
+            System.out.println("Introduce lo que ha ocurrido el día " + fecha);
+            entradaDiario = reader.nextLine();
+            informacion.put(fecha, entradaDiario);
+            // Llamamos a la función correspondiente para escribir en el fichero
+            escribirEntradaFichero(fecha+";"+entradaDiario);
+            System.out.println("Entrada añadida al diario");
+        }
+    }
+    
+    
+    /**
+     * Esta función permite transformar los datos dia, mes y year en una fecha separada por '/0'
+     * @return retorna un String con la fecha en formato 'DD/MM/YYYY'
+     */
+    public static String transformarFecha(){
+        Scanner reader = new Scanner(System.in);
+        String fecha = "";
+        int dia = 0;
+        int mes = 0;
+        int year = 0;
+        // Pedimos el dia 
+        do {
+            System.out.println("Dame el dÃ­a de la semana de la entrada del diario: ");
+            dia = reader.nextInt();
+        } while (dia <= 0 || dia > 31);
+
+        if (dia < 10) {
+            fecha = "0" + dia + "/";
+        } else {
+            fecha = dia + "/";
+        }
+
+        // Pedimos el mes 
+        do {
+            System.out.println("Dame el mes de la entrada del diario: ");
+            mes = reader.nextInt();
+        } while (mes <= 0 || mes > 12);
+
+        if (mes < 10) {
+            fecha += "0" + mes + "/";
+        } else {
+            fecha += mes + "/";
+        }
+
+        // Pedimos el aÃ±o 
+        do {
+            System.out.println("Dame el aÃ±o de la entrada del diario: ");
+            year = reader.nextInt();
+        } while (year <= 2000 || year > 2999);
+
+        fecha += year;
+        System.out.println("La fecha de entrada es: " + fecha);
+        
+        return fecha;
     }
     
     /**
      * Esta función permite la escritura de una entrada en el fichero del diario
-     * @param entradaIn string con la información de lo que ha pasado determinado día
+     *
+     * @param entradaIn string con la información de lo que ha pasado
+     * determinado día
      */
-    public static void escribirEntradaFichero(String entradaIn){
+    public static void escribirEntradaFichero(String entradaIn) {
         try {
             File fichero = new File(".\\src\\ficheros\\diario.txt");
             FileWriter fw = new FileWriter(fichero, Charset.forName("ISO-8859-1"), true);
