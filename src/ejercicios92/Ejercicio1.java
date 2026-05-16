@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package ejercicios92;
 
 import java.io.File;
@@ -12,15 +9,22 @@ import java.util.Scanner;
 
 /**
  *
- * @author mario.gutgon
+ * Ejercicio 1 - Diario
+ * Permitiremos
+ *  - Escribir en el diario si la fecha de la entrada no está repetida
+ *  - Obtener la entrada del diario en función de la fecha
+ * 
+ * @author Mario Gutiérrez
+ * @see https://classroom.google.com/c/ODA3NDY5OTY5MTcz/a/ODYyOTYzMjczMzkw/details
+ * @version 1.0
  */
-public class Ejercicios92 {
+public class Ejercicio1 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // DeclaraciÃ³n de variables
+        // Declaración de variables
         Scanner reader = new Scanner(System.in);
         HashMap<String, String> diario = leerFichero();
         leerDiario(diario);
@@ -107,7 +111,7 @@ public class Ejercicios92 {
             }
             rf.close();
         } catch (FileNotFoundException ex) {
-            System.getLogger(Ejercicios92.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(Ejercicio1.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         
         return informacion;
@@ -116,7 +120,7 @@ public class Ejercicios92 {
     
     public static void leerDiario(HashMap<String, String> informacion){
         for (String key : informacion.keySet()){
-            System.out.println("DÃ­a: " + key + " \"" + informacion.get(key) + "\"");
+            System.out.println("Dí­a: " + key + " \"" + informacion.get(key) + "\"");
         }
     }
     
@@ -126,7 +130,7 @@ public class Ejercicios92 {
         int entradaIn = 0;
         do {
             for (String key : informacion.keySet()) {
-                System.out.println("DÃ­a: " + key);
+                System.out.println("Día: " + key);
             }
         } while(true);
     }
