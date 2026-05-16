@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 /**
  *
- * Ejercicio 1 - Diario Permitiremos 
- * 
- * - Escribir en el diario si la fecha de la entrada no está repetida 
- * - Obtener la entrada del diario en función de la fecha
+ * Ejercicio 1 - Diario Permitiremos
+ *
+ * - Escribir en el diario si la fecha de la entrada no está repetida - Obtener
+ * la entrada del diario en función de la fecha
  *
  * @author Mario Gutiérrez
  * @see
@@ -30,40 +30,88 @@ public class Ejercicio1 {
     public static void main(String[] args) {
         // Declaración de variables
         Scanner reader = new Scanner(System.in);
-        HashMap<String, String> diario = leerFichero();
+        File fichero = new File(".\\src\\ficheros\\ejemplo.txt");
+        HashMap<String, String> diario = leerFichero(fichero);
         int opcionIn = 0;
         boolean continuar = true;
-        while (continuar){
+        while (continuar) {
             try {
                 System.out.println("Bienvenid@ a tu diario, elige una opción por favor:"
                         + "\n1- Escribir en el diario"
                         + "\n2- Leer una entrada del diario"
                         + "\nOtro - Salir del programa");
                 opcionIn = reader.nextInt();
-                switch (opcionIn){
+                switch (opcionIn) {
                     case 1:
                         System.out.println("Vamos a añadir una entrada al diario.");
-                        addEntrada(diario);
+                        addEntrada(diario, fichero);
                         break;
                     case 2:
                         System.out.println("Has elegido leer una entrada del diario.");
-                        leerEntrada(diario);
+                        if (diario.isEmpty()) {
+                            System.out.println("No hay nada que mostrar por el momento");
+                        } else {
+                            leerEntrada(diario);
+                        }
                         break;
                     default:
                         System.out.println("Hasta luego!!");
                         continuar = false;
                         break;
                 }
-            } catch (InputMismatchException ime){
+            } catch (InputMismatchException ime) {
                 System.err.println("El dato introducido es inválido: " + ime);
                 reader.nextLine();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println("Error inesperado: " + e);
                 reader.nextLine();
             }
         }
 
-        
+    }
+
+    /**
+     * Esta función permite desencriptar una entrada para que tenga un formato
+     * más legible
+     *
+     * @param entradaIn
+     * @return Un string con la entrada de forma legible
+     */
+    public static String desencriptarEntrada(String entradaIn) {
+        String entradaDesencriptada = "";
+        char[] values = entradaIn.toCharArray();
+        for (int i = 0; i < values.length; i++) {
+            char temporal = ' ';
+            if (values[i] != ' ') {
+                temporal = (char) (values[i] - 10);
+                entradaDesencriptada += temporal;
+            } else {
+                entradaDesencriptada += ' ';
+            }
+        }
+        return entradaDesencriptada;
+    }
+
+    /**
+     * Esta función permite encriptar la entrada correspondiente para que no se
+     * pueda leer
+     *
+     * @param entradaIn
+     * @return String con la entrada codificada
+     */
+    public static String encriptarEntrada(String entradaIn) {
+        String entradaEncriptada = "";
+        char[] values = entradaIn.toCharArray();
+        for (int i = 0; i < values.length; i++) {
+            char temporal = ' ';
+            if (values[i] != ' ') {
+                temporal = (char) (values[i] + 10);
+                entradaEncriptada += temporal;
+            } else {
+                entradaEncriptada += ' ';
+            }
+        }
+        return entradaEncriptada;
     }
 
     /**
@@ -72,15 +120,14 @@ public class Ejercicio1 {
      * @return HashMap con la información del diario, siendo la Key el día de la
      * entrada y el Value la entrada en concreto
      */
-    public static HashMap<String, String> leerFichero() {
+    public static HashMap<String, String> leerFichero(File ficheroIn) {
         HashMap<String, String> informacion = new HashMap<>();
 
         try {
-            File diario = new File(".\\src\\ficheros\\diario.txt");
-            Scanner rf = new Scanner(diario);
+            Scanner rf = new Scanner(ficheroIn);
             while (rf.hasNext()) {
                 String[] lineaDiario = rf.nextLine().split(";");
-                informacion.put(lineaDiario[0], lineaDiario[1]);
+                informacion.put(lineaDiario[0], desencriptarEntrada(lineaDiario[1]));
             }
             rf.close();
         } catch (FileNotFoundException ex) {
@@ -111,25 +158,25 @@ public class Ejercicio1 {
         String entradaElegida = "";
         int opcionIn = 0;
         try {
-                for (String key : informacion.keySet()) {
-                    System.out.println("Día: " + key);
-                    System.out.println("¿Quieres leer esta entrada? Pulsa 0 para leer, pulsa 1 para seguir:");
-                    opcionIn = reader.nextInt();
-                    if (opcionIn == 0) {
-                        System.out.println("Se ha seleccionado el día \"" + key + "\"");
-                        entradaElegida = key;
-                        break;
-                    }
+            for (String key : informacion.keySet()) {
+                System.out.println("Día: " + key);
+                System.out.println("¿Quieres leer esta entrada? Pulsa 0 para leer, pulsa 1 para seguir:");
+                opcionIn = reader.nextInt();
+                if (opcionIn == 0) {
+                    System.out.println("Se ha seleccionado el día \"" + key + "\"");
+                    entradaElegida = key;
+                    break;
                 }
-                System.out.println(informacion.get(entradaElegida));
-            } catch (InputMismatchException ime) {
-                System.err.println("El dato introducido es inválido: " + ime);
-                reader.nextLine();
-            } catch (Exception e) {
-                System.err.println("ERROR INESPERADO: " + e);
-                reader.nextLine();
             }
-        
+            System.out.println(informacion.get(entradaElegida));
+        } catch (InputMismatchException ime) {
+            System.err.println("El dato introducido es inválido: " + ime);
+            reader.nextLine();
+        } catch (Exception e) {
+            System.err.println("ERROR INESPERADO: " + e);
+            reader.nextLine();
+        }
+
     }
 
     /**
@@ -149,16 +196,17 @@ public class Ejercicio1 {
     }
 
     /**
-     * Esta función permite añadir una entrada al diario siempre y cuando no exista previamente.
-     *  Se mostrará por pantalla si se ha podido añadir o no
+     * Esta función permite añadir una entrada al diario siempre y cuando no
+     * exista previamente. Se mostrará por pantalla si se ha podido añadir o no
+     *
      * @param informacion HashMap con la información del fichero
      */
-    public static void addEntrada(HashMap<String, String> informacion) {
+    public static void addEntrada(HashMap<String, String> informacion, File ficheroIn) {
         Scanner reader = new Scanner(System.in);
         HashSet<String> listado = listadoEntradas(informacion);
         String fecha = transformarFecha();
-        
-        if (listado.contains(fecha)){
+
+        if (listado.contains(fecha)) {
             System.out.println("Lo sentimos pero la fecha introducida ya existe en el diario.");
         } else {
             // Añadimos la entrada correspondiente
@@ -167,17 +215,18 @@ public class Ejercicio1 {
             entradaDiario = reader.nextLine();
             informacion.put(fecha, entradaDiario);
             // Llamamos a la función correspondiente para escribir en el fichero
-            escribirEntradaFichero(fecha+";"+entradaDiario);
+            escribirEntradaFichero(fecha, encriptarEntrada(entradaDiario), ficheroIn);
             System.out.println("Entrada añadida al diario");
         }
     }
-    
-    
+
     /**
-     * Esta función permite transformar los datos dia, mes y year en una fecha separada por '/0'
+     * Esta función permite transformar los datos dia, mes y year en una fecha
+     * separada por '/0'
+     *
      * @return retorna un String con la fecha en formato 'DD/MM/YYYY'
      */
-    public static String transformarFecha(){
+    public static String transformarFecha() {
         Scanner reader = new Scanner(System.in);
         String fecha = "";
         int dia = 0;
@@ -215,21 +264,21 @@ public class Ejercicio1 {
 
         fecha += year;
         System.out.println("La fecha de entrada es: " + fecha);
-        
+
         return fecha;
     }
-    
+
     /**
      * Esta función permite la escritura de una entrada en el fichero del diario
      *
+     * @param fechaIn String con la fecha de la entrada
      * @param entradaIn string con la información de lo que ha pasado
      * determinado día
      */
-    public static void escribirEntradaFichero(String entradaIn) {
+    public static void escribirEntradaFichero(String fechaIn, String entradaIn, File ficheroIn) {
         try {
-            File fichero = new File(".\\src\\ficheros\\diario.txt");
-            FileWriter fw = new FileWriter(fichero, Charset.forName("ISO-8859-1"), true);
-            fw.write(entradaIn + "\n");
+            FileWriter fw = new FileWriter(ficheroIn, Charset.forName("ISO-8859-1"), true);
+            fw.write(fechaIn + ";" + entradaIn + "\n");
             fw.close();
             System.out.println("Fichero escrito correctamente");
         } catch (IOException ioe) {
