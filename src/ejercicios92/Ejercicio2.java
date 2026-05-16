@@ -43,6 +43,8 @@ public class Ejercicio2 {
             
             while (continuar){
                 try {
+                    informacionStringIn = "";
+                    opcionIn=0;
                     // Comenzamos el menú
                     System.out.println("Bienvenid@ al recetario de Mario, a continuación mostramos las opciones disponibles:"
                             + "\n1- Listar todas las recetas disponibles"
@@ -56,16 +58,18 @@ public class Ejercicio2 {
                             mostrarRecetas(recetas);
                             break;
                         case 2:
+                            reader.nextLine();
                             System.out.println("Vamos a añadir una receta, por favor introduce el nombre: ");
                             informacionStringIn = reader.nextLine();
                             if (comprobarNombreReceta(recetas, informacionStringIn)){
                                 System.out.println("Lo sentimos pero el nombre de la receta ya existe");
                             } else {
                                 System.out.println("Perfecto! Podemos añadir la receta");
-                                recetas = addRecipe(recetas, informacionStringIn);
+                                recetas.putAll(addRecipe(recetas, informacionStringIn));
                             }
                             break;
                         case 3:
+                            reader.nextLine();
                             System.out.println("Introduce el nombre del ingrediente que vamos a buscar por favor: ");
                             informacionStringIn = reader.nextLine();
                             buscarIngrediente(recetas, informacionStringIn);
@@ -103,7 +107,7 @@ public class Ejercicio2 {
             while(rf.hasNext()){
                 String[] informacion = rf.nextLine().split("\\|");
                 // Almacenamos los datos de las recetas en un hashmap
-                recetas.put(informacion[0], informacion[1]+informacion[2]);
+                recetas.put(informacion[0], informacion[1]+ "|" + informacion[2]); // Si no añadimos | de nuevo, no tenemos delimitador
             }
             rf.close();
         } catch (FileNotFoundException fnfex) {
@@ -156,19 +160,25 @@ public class Ejercicio2 {
             
             // Añadimos los ingredientes que queramos
             while(true){
-                System.err.println("Introduce el nombre del ingrediente necesario: ");
-                informacionIn = reader.nextLine();
-                System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
-                opcionIn = reader.nextInt();
-                if (opcionIn == 0){
-                    System.out.println("Continuamos!\n");
-                    // Si vamos a seguir tenemos que añadir el delimitador ';' detrás de cada palabra introducida
-                    ingredientes += informacionIn + ";";
-                } else {
-                    System.out.println("Pasamos al siguiente punto.");
-                    // Si no vamos a guardar más información, el último ingrediente no tiene que tener ningún delimitador
-                    ingredientes += informacionIn;
-                    break;
+                try {
+                    System.out.println("Introduce el nombre del ingrediente necesario: ");
+                    informacionIn = reader.nextLine();
+                    System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
+                    opcionIn = reader.nextInt();
+                    if (opcionIn == 0) {
+                        System.out.println("Continuamos!\n");
+                        // Si vamos a seguir tenemos que añadir el delimitador ';' detrás de cada palabra introducida
+                        ingredientes += informacionIn + ";";
+                    } else {
+                        System.out.println("Pasamos al siguiente punto.");
+                        // Si no vamos a guardar más información, el último ingrediente no tiene que tener ningún delimitador
+                        ingredientes += informacionIn;
+                        break;
+                    }
+                    reader.nextLine();
+                } catch (InputMismatchException ime){
+                    System.err.println("Lo sentimos pero el dato introducido es incorrecto: " + ime);
+                    reader.nextLine();
                 }
             }   
             
@@ -176,19 +186,25 @@ public class Ejercicio2 {
             informacionIn = "";
             opcionIn = 0;
             while (true){
-                System.err.println("Introduce el paso necesario para la receta: ");
-                informacionIn = reader.nextLine();
-                System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
-                opcionIn = reader.nextInt();
-                if (opcionIn == 0){
-                    System.out.println("Continuamos!\n");
-                    // Si vamos a seguir tenemos que añadir el delimitador ';' detrás de cada palabra introducida
-                    pasos += informacionIn + ";";
-                } else {
-                    System.out.println("Pasamos al siguiente punto.");
-                    // Si no vamos a guardar más información, el último paso no tiene que tener ningún delimitador
-                    pasos += informacionIn;
-                    break;
+                try {
+                    reader.nextLine();
+                    System.out.println("Introduce el paso necesario para la receta: ");
+                    informacionIn = reader.nextLine();
+                    System.out.println("¿Quieres seguir? Pulsa 0 para continuar y 1 para salir");
+                    opcionIn = reader.nextInt();
+                    if (opcionIn == 0) {
+                        System.out.println("Continuamos!\n");
+                        // Si vamos a seguir tenemos que añadir el delimitador ';' detrás de cada palabra introducida
+                        pasos += informacionIn + ";";
+                    } else {
+                        System.out.println("Pasamos al siguiente punto.");
+                        // Si no vamos a guardar más información, el último paso no tiene que tener ningún delimitador
+                        pasos += informacionIn;
+                        break;
+                    }
+                } catch (InputMismatchException ime){
+                    System.err.println("Lo sentimos pero el dato introducido es incorrecto: " + ime);
+                    reader.nextLine();
                 }
             }
             // Guardamos en el string correspondiente la informacion de los ingredientes y recetas, se usará más adelante
@@ -198,7 +214,7 @@ public class Ejercicio2 {
             recetas.put(nombreIn, valueHashMap);
             
             // Guardamos la nueva receta en nuestro fichero gracias al nombre introducido por el usuario y la combinación de ingredientes y pasos anterior
-            escribirReceta(nombreIn + "\\|" + valueHashMap);
+            escribirReceta(nombreIn + "|" + valueHashMap);
             System.out.println("Perfecto, hemos añadido tu receta al recetario");
             
         
@@ -222,14 +238,16 @@ public class Ejercicio2 {
             */
             String[] ingredientes = informacionReceta[0].split(";");
             String[] pasos = informacionReceta[1].split(";");
-            System.out.println("Para la receta: " + nombreReceta+ "\n");
+            System.out.println("Para la receta: " + nombreReceta);
+            System.out.println("\nIngredientes: ");
             for (int i = 0; i < ingredientes.length; i++){
                 System.out.println("Ingrediente " + (i+1) + " - " + ingredientes[i]);
             }
-            System.out.println("Pasos a seguir\n");
+            System.out.println("\nPasos a seguir:");
             for (int i = 0; i < pasos.length; i++){
                 System.out.println("Paso " + (i+1) + " - " + pasos[i]);
             }
+            System.out.println("");
         }
     }
     
@@ -270,7 +288,6 @@ public class Ejercicio2 {
             for (int i = 0; i < ingredientes.length; i++){
                 if (ingredientes[i].replace(" ", "").equalsIgnoreCase(ingredienteIn.replace(" ", ""))){
                     // El ingrediente se encuentra
-                    System.out.println("Ingrediente encontrado");
                     recetasEncontradas.put(informacion, recetas.get(informacion));
                     break;
                 }

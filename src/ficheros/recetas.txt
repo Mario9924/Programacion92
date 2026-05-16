@@ -1,1 +1,4 @@
 Pasta Carbonara|pasta;huevo;panceta;queso;sal;agua|paso1;paso2;paso3
+Tortilla de patatas|Patata;Sal;huevo;aceite|paso1;paso2;paso3
+Cocido|garbanzos;carne;patata;zanahoria|paso1;paso2;paso3;paso4
+Tortilla francesa|Huevos;sal;aceite|paso1;paso2;paso2
