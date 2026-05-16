@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -30,20 +31,57 @@ public class Ejercicio2 {
     public static void main(String[] args) {
         // Declaración de variables
         Scanner reader = new Scanner(System.in);
-        HashSet<String> nombresRecetas = new HashSet<>();
+        HashMap<String, String> recetas = new HashMap<>();
+        int opcionIn = 0;
+        String informacionStringIn = ""; // Variable que guardará el nombre de la receta o del ingrediente
+        boolean continuar = true;
         File fichero = new File(".\\src\\ficheros\\recetas.txt");
         if (fichero.exists()){
             System.out.println("El fichero existe");
-            try {
-                Scanner rf = new Scanner(fichero);
-                while (rf.hasNext()){
-                    String[] informacion = rf.nextLine().split("\\|");
-                    nombresRecetas.add(informacion[0]);
+            //Guardamos la información
+            recetas = obtenerInformacion(fichero);
+            
+            while (continuar){
+                try {
+                    // Comenzamos el menú
+                    System.out.println("Bienvenid@ al recetario de Mario, a continuación mostramos las opciones disponibles:"
+                            + "\n1- Listar todas las recetas disponibles"
+                            + "\n2- Añadir una nueva receta"
+                            + "\n3- Buscar recetas a partir de un ingrediente"
+                            + "\nOtro - Salir del prorgrama");
+                    opcionIn = reader.nextInt();
+                    switch (opcionIn) {
+                        case 1:
+                            System.out.println("Pasamos a mostrar la información disponible de las recetas: ");
+                            mostrarRecetas(recetas);
+                            break;
+                        case 2:
+                            System.out.println("Vamos a añadir una receta, por favor introduce el nombre: ");
+                            informacionStringIn = reader.nextLine();
+                            if (comprobarNombreReceta(recetas, informacionStringIn)){
+                                System.out.println("Lo sentimos pero el nombre de la receta ya existe");
+                            } else {
+                                System.out.println("Perfecto! Podemos añadir la receta");
+                                recetas = addRecipe(recetas, informacionStringIn);
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Introduce el nombre del ingrediente que vamos a buscar por favor: ");
+                            informacionStringIn = reader.nextLine();
+                            buscarIngrediente(recetas, informacionStringIn);
+                            break;
+                        default:
+                            System.out.println("Hasta luego!");
+                            continuar = false;
+                            break;
+                    }
+                } catch (InputMismatchException ime){
+                    System.err.println("El dato introducido es incorrecto: " + ime);
+                    reader.nextLine();
+                } catch (Exception e){
+                    System.err.println("ERROR INESPERADO: " + e);
+                    reader.nextLine();
                 }
-                rf.close();
-                System.out.println(nombresRecetas);
-            } catch (FileNotFoundException ex) {
-                System.getLogger(Ejercicio2.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
         } else {
             System.out.println("El fichero no existe");
