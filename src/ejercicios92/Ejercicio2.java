@@ -49,23 +49,7 @@ public class Ejercicio2 {
             System.out.println("El fichero no existe");
         }
         
-        // Pedir nombre de la receta y comenzar a trabajar con el programa
         
-        String nombreReceta  = "";
-        //boolean nombreExiste = false;
-        
-        while (true){
-            System.out.println("Dime el nombre de la receta que quieres incluir: ");
-            nombreReceta = reader.nextLine();
-            if (nombresRecetas.contains(nombreReceta) || nombresRecetas.contains(nombreReceta.replace(" ", "")) || nombresRecetas.contains(nombreReceta.toLowerCase().replace(" ", ""))){
-                System.out.println("El nombre elegido ya existe, elige otro por favor");
-            } else {
-                break;
-                //nombreExiste = true;
-            }
-        }
-        
-        System.out.println("Has elegido el nombre: " + nombreReceta);
     }
     
     
