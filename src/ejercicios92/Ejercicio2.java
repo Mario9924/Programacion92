@@ -256,7 +256,6 @@ public class Ejercicio2 {
      * @param informacionReceta String con el formato NombreReceta|ingrediente1;ingredienteN|paso1;pasoN
      */
     public static void escribirReceta(String informacionReceta){
-        // FileWriter ( File objetoTipoFile, Charset tipoCodificación, boolean append )
         try {
             File fichero = new File(".\\src\\ficheros\\recetas.txt");
             FileWriter fw = new FileWriter(fichero, Charset.forName("ISO-8859-1"), true);
