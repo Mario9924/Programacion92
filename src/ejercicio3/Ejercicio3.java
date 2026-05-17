@@ -1,5 +1,9 @@
 package ejercicio3;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -17,7 +21,7 @@ public class Ejercicio3 {
      */
     public static void main(String[] args) {
         // Declaración de variables
-        File ficheroConfiguracion = new File("");
+        File ficheroConfiguracion = new File(".\\src\\ficheros\\ejercicio3.txt");
         Scanner reader = new Scanner(System.in);
         
         SmartPhone miMovil = new SmartPhone("Negro");
@@ -47,7 +51,32 @@ public class Ejercicio3 {
         miMovil.hacerLlamada("Chelo");
         miMovil.mostrarLlamadas();
         
+        // Probamos a guardar la información del objeto en un fichero
         
+        guardarInformacion(ficheroConfiguracion, miMovil);
     }
     
+    
+    public static void guardarInformacion(File ficheroIn, SmartPhone telfIn){
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            // Generamos un flujo de datos para guardar en el fichero la información
+            fos = new FileOutputStream(ficheroIn);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(telfIn);
+            System.out.println("Se ha guardado la información");
+        } catch (FileNotFoundException fnfex) {
+            System.err.println("Error de fichero: " + fnfex);
+        } catch (IOException ioex) {
+            System.err.println("Error a al ahora de escribir el fichero" + ioex);
+        } finally {
+            try {
+                oos.close();
+                fos.close();
+            } catch (IOException ioex) {
+                System.err.println("Error a al ahora de escribir el fichero" + ioex);
+            }
+        }
+    }
 }
