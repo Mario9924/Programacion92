@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ejercicio3;
 
 import java.io.Serializable;
@@ -12,14 +8,20 @@ import java.util.Scanner;
 
 /**
  *
- * @author Mario_
+ * Clase SmartPhone que contiene una serie de atributos como:
+ *  brillo - volumen - listadoLlamadas - imei (los cuales se van a almacenar)
+ *  color - precio - marca (que no vamos a guardar)
+ * 
+ * @author Mario Gutiérrez
+ * @see https://classroom.google.com/c/ODA3NDY5OTY5MTcz/a/ODYyOTYzMjczMzkw/details
+ * @version 1.0
  */
 public class SmartPhone implements Serializable{
     private transient static Scanner reader = new Scanner(System.in);
     private transient String color;
-    private transient String imei;
     private transient final int precio = 1100;
     private transient final String marca = "πj-iphone";
+    private String imei;
     private int brillo;
     private int volumen;
     private HashMap<String, String> listadoLlamadas;
