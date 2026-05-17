@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package ejercicios92;
 
 import java.io.File;
@@ -11,7 +7,16 @@ import java.util.Scanner;
 
 /**
  *
- * @author Mario_
+ * Se pretende simular el juego Saber y Ganar, el programa consta de 3 rondas
+ * Ronda 1 - En 1 minuto se han de contestar tantas preguntas como se pueda
+ * Ronda 2 - Se han de contestar 6 preguntas en total o al menos, dos más que el cazador
+ * Ronda 3 - En 2 minutos el cazador y el concursante han de contestar unas preguntas, aquel que conteste más preguntas, ganará
+ * 
+ * Cada ronda tiene una serie de ficheros llenos de preguntas para su uso
+ * 
+ * @author Mario Gutiérrez
+ * @see https://classroom.google.com/c/ODA3NDY5OTY5MTcz/a/ODYyOTYzMjczMzkw/details
+ * @version 1.0
  */
 public class Ejercicio4 {
 
@@ -26,31 +31,46 @@ public class Ejercicio4 {
         int contadorAciertosCazador = 0;
         int dineros = 0;
         int opcionIn = 0;
+        int contadorPreguntas = 0; // Se usará en la segunda ronda para contabilizar las 6 preguntas que ha de contestar el concursante
         long tiempoInicio = System.currentTimeMillis();
         long tiempoFin = tiempoInicio + 60000;
+        
+        /*
+            Se declaran e instancian las distintas rondas del programa
+        */
+        
         HashMap<String, String> ronda1 = new HashMap<>();
         File ficheroRonda1 = new File(".\\src\\ficheros\\ejercicio41.txt");
         ronda1 = leerFichero(ficheroRonda1);
+        
+        File ficheroRonda2 = new File(".\\src\\ficheros\\ejercicio42.txt");
+        HashMap<String, String> ronda2 = new HashMap<>();
+        
+        File ficheroRonda3 = new File(".\\src\\ficheros\\ejercicio43.txt");
+        HashMap<String, String> ronda3 = leerFichero(ficheroRonda3);
+        
 
         // Primera ronda - Se contestan tantas preguntas como se puedan en 1 minuto
-        
         System.out.println("Comienza la primera ronda");
         for (String key : ronda1.keySet()) {
             System.out.println(key);
             respuestaIn = reader.nextLine();
             if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda1.get(key).replace(" ", ""))) {
                 contadorAciertosConcursante++;
-            }  else {
-                    System.out.println("No es correcto");
-                }
-            if (System.currentTimeMillis() > tiempoFin){
+            } else {
+                System.out.println("No es correcto");
+            }
+            /*
+                Tenemos que comprobar que estemos en el minuto permitido, de otro modo se saldrá del programa
+            */
+            if (System.currentTimeMillis() > tiempoFin) {
                 System.out.println("Se acabó el tiempo!!");
                 break;
             }
         }
         dineros = contadorAciertosConcursante * 1000;
         System.out.println("Has acertado " + contadorAciertosConcursante + " preguntas y has ganado " + dineros + " dineros");
-         
+
         contadorAciertosConcursante = 0;
 
         // Segunda ronda
@@ -59,6 +79,7 @@ public class Ejercicio4 {
             - acertar como mínimo 2 menos que el cazador
         Ejemplo: El cazador acierta 6, entonces el concursante tiene que acertar 4 
          */
+        
         //Simulamos que juega el cazador
         for (int i = 0; i < 6; i++) {
             double random = Math.random();
@@ -67,12 +88,11 @@ public class Ejercicio4 {
             }
         }
 
-        System.out.println("El cazador ha acertado: " + contadorAciertosCazador + "\nTienes que acertar al menos " + (contadorAciertosCazador - 2) + " preguntas");
-
-        HashMap<String, String> ronda2 = new HashMap<>();
-        File ficheroRonda2 = new File(".\\src\\ficheros\\ejercicio42.txt");
+        System.out.println("El cazador ha acertado: " + contadorAciertosCazador 
+                + "\nTienes que acertar al menos " + (contadorAciertosCazador - 2) + " preguntas");        
+       
+        // Cargamos en el HashMap correspondiente las preguntas y respuestas de la segunda ronda
         ronda2 = leerFicheroMultiple(ficheroRonda2);
-        int contadorPreguntas = 0;
 
         for (String key : ronda2.keySet()) {
             if (contadorPreguntas == 6) {
@@ -80,6 +100,11 @@ public class Ejercicio4 {
                 break;
             } else {
                 System.out.println(key);
+                /*
+                    Este fichero tiene la siguiente estructura:
+                    Pregunta|respuesta1;respuesta2;respuesta3
+                    De modo que al acceder a la Key correspondiente obtenemos un string con "resp1;resp2;resp3"
+                */
                 String[] respuestas = ronda2.get(key).split(";");
                 do {
                     System.out.println("Elige una respuesta: ");
@@ -99,22 +124,22 @@ public class Ejercicio4 {
             }
         }
 
-        System.out.println("\nACIERTOS CAZADOR: " + contadorAciertosCazador + "\nACIERTOS JUGADOR: " + contadorAciertosConcursante + "\n");
+        System.out.println("\nACIERTOS CAZADOR: " + contadorAciertosCazador 
+                + "\nACIERTOS JUGADOR: " + contadorAciertosConcursante + "\n");
 
         // Finaliza la segunda ronda
         if (contadorAciertosConcursante < contadorAciertosCazador) {
             System.out.println("Que mala pata, has perdido el juego y los dineros ganados");
         } else {
             // Continuamos el juego
-            File ficheroRonda3 = new File(".\\src\\ficheros\\ejercicio43.txt");
-            HashMap<String, String> ronda3 = leerFichero(ficheroRonda3);
 
-            System.out.println("Comienza la última ronda");
+            System.out.println("Comienza la última ronda. Ahora con preguntas de Dragon Ball");
+            // Dejamos los contadores a 0 de nuevo
             contadorAciertosCazador = 0;
             contadorAciertosConcursante = 0;
 
             tiempoFin = System.currentTimeMillis() + 120000;
-            for (String key : ronda1.keySet()) {
+            for (String key : ronda3.keySet()) {
                 System.out.println(key);
                 respuestaIn = reader.nextLine();
                 if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda1.get(key).replace(" ", ""))) {
@@ -136,14 +161,15 @@ public class Ejercicio4 {
                 }
             }
 
-            System.out.println("\nACIERTOS CAZADOR: " + contadorAciertosCazador + "\nACIERTOS JUGADOR: " + contadorAciertosConcursante + "\n");
-            
-            if (contadorAciertosCazador >= contadorAciertosConcursante){
+            System.out.println("\nACIERTOS CAZADOR: " + contadorAciertosCazador 
+                    + "\nACIERTOS JUGADOR: " + contadorAciertosConcursante + "\n");
+
+            if (contadorAciertosCazador >= contadorAciertosConcursante) {
                 System.out.println("Que mala pata, has perdido contra el cazador, devuelve los dineros que te vas para casa");
             } else {
                 System.out.println("Que bien!!! Has ganado, te llevas " + dineros + " dineros");
             }
-            
+
         }
     }
 

@@ -30,7 +30,7 @@ public class Ejercicio1 {
     public static void main(String[] args) {
         // Declaración de variables
         Scanner reader = new Scanner(System.in);
-        File fichero = new File(".\\src\\ficheros\\ejemplo.txt");
+        File fichero = new File(".\\src\\ficheros\\diario.txt");
         HashMap<String, String> diario = leerFichero(fichero);
         int opcionIn = 0;
         boolean continuar = true;
