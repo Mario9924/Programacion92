@@ -112,4 +112,10 @@ public class SmartPhone implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "SmartPhone{" + "brillo=" + brillo + ", volumen=" + volumen + ", listadoLlamadas=" + listadoLlamadas + '}';
+    }
+    
+    
 }
