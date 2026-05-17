@@ -33,14 +33,16 @@ public class Ejercicio4 {
         ronda1 = leerFichero(ficheroRonda1);
 
         // Primera ronda - Se contestan tantas preguntas como se puedan en 1 minuto
-        /*
+        
         System.out.println("Comienza la primera ronda");
         for (String key : ronda1.keySet()) {
             System.out.println(key);
             respuestaIn = reader.nextLine();
             if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda1.get(key).replace(" ", ""))) {
                 contadorAciertosConcursante++;
-            }
+            }  else {
+                    System.out.println("No es correcto");
+                }
             if (System.currentTimeMillis() > tiempoFin){
                 System.out.println("Se acabó el tiempo!!");
                 break;
@@ -48,7 +50,7 @@ public class Ejercicio4 {
         }
         dineros = contadorAciertosConcursante * 1000;
         System.out.println("Has acertado " + contadorAciertosConcursante + " preguntas y has ganado " + dineros + " dineros");
-         */
+         
         contadorAciertosConcursante = 0;
 
         // Segunda ronda
@@ -117,6 +119,8 @@ public class Ejercicio4 {
                 respuestaIn = reader.nextLine();
                 if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda1.get(key).replace(" ", ""))) {
                     contadorAciertosConcursante++;
+                } else {
+                    System.out.println("No es correcto");
                 }
                 if (System.currentTimeMillis() > tiempoFin) {
                     System.out.println("Se acabó el tiempo!!");
