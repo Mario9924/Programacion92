@@ -36,7 +36,26 @@ public class SmartPhone implements Serializable{
        return this.listadoLlamadas;
    }
     
+   public String getImei(){
+       return this.imei;
+   }
     
+   private void setEmai(){
+       int numeroAleatorio = 0; //+65
+        String imeiGenerado = "";        
+        for (int i = 0; i < 18; i++){
+            numeroAleatorio = (int) Math.floor((Math.random()*26)+65);
+            if (i == 6 ||i == 9 ||i == 16){
+                imeiGenerado += "/";
+            } else {
+                imeiGenerado += (char) numeroAleatorio;
+            }
+        }
+        this.imei = imeiGenerado;
+   }
+   
+   
+   
     public void hacerLlamada(String contactoIn){
         if (this.getListado().size() == 5){
             System.out.println("Se han realizado 5 llamadas, pasamos a eliminar una de ellas");
@@ -44,8 +63,8 @@ public class SmartPhone implements Serializable{
             while (iterador.hasNext()){
                 iterador.next();
                 iterador.remove();
-            }
-            
+                break;
+            }            
             System.out.println(this.getListado());
         } else {
             try {
