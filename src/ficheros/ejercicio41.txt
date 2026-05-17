@@ -31,7 +31,7 @@
 ¿Cuáles son los apellidos de las familias enfrentadas en Romeo y Julieta?;Los Montesco y los Capuleto
 ¿En qué parte del cuerpo humano se encuentra el hueso más pequeño?;La oreja
 ¿Cuál es el único metal que es líquido a temperatura ambiente?;Mercurio
-¿Qué nombre recibe la carne de ciervo en el menú de un restaurante?Venado
+¿Qué nombre recibe la carne de ciervo en el menú de un restaurante?;Venado
 ¿Cuántos países forman la Unión Europea?;27
 ¿Siglas de la asignatura Entornos de Desarrollo?;ED
 ¿Cuántos países forman la Unión Europea?;27

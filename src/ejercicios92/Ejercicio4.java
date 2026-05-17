@@ -48,34 +48,34 @@ public class Ejercicio4 {
         }
         dineros = contadorAciertosConcursante * 1000;
         System.out.println("Has acertado " + contadorAciertosConcursante + " preguntas y has ganado " + dineros + " dineros");
-        */
+         */
         contadorAciertosConcursante = 0;
-        
+
         // Segunda ronda
         /*
             Ahora el concursante se enfrenta al cazador y para vencerle ha de:
             - acertar como mínimo 2 menos que el cazador
         Ejemplo: El cazador acierta 6, entonces el concursante tiene que acertar 4 
-        */
-        
+         */
         //Simulamos que juega el cazador
-        for (int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             double random = Math.random();
-            if (random < 0.50){
+            if (random < 0.50) {
                 contadorAciertosCazador++;
             }
         }
-        
-        System.out.println("El cazador ha acertado: " + contadorAciertosCazador + "\nTienes que acertar al menos " + (contadorAciertosCazador-2) + " preguntas");
-        
+
+        System.out.println("El cazador ha acertado: " + contadorAciertosCazador + "\nTienes que acertar al menos " + (contadorAciertosCazador - 2) + " preguntas");
+
         HashMap<String, String> ronda2 = new HashMap<>();
         File ficheroRonda2 = new File(".\\src\\ficheros\\ejercicio42.txt");
         ronda2 = leerFicheroMultiple(ficheroRonda2);
         int contadorPreguntas = 0;
-        
-        for (String key : ronda2.keySet()){
-            if (contadorPreguntas == 5){
+
+        for (String key : ronda2.keySet()) {
+            if (contadorPreguntas == 6) {
                 System.out.println("Se terminó la segunda ronda");
+                break;
             } else {
                 System.out.println(key);
                 String[] respuestas = ronda2.get(key).split(";");
@@ -96,17 +96,50 @@ public class Ejercicio4 {
                 contadorPreguntas++;
             }
         }
-        
+
+        System.out.println("\nACIERTOS CAZADOR: " + contadorAciertosCazador + "\nACIERTOS JUGADOR: " + contadorAciertosConcursante + "\n");
+
         // Finaliza la segunda ronda
-        
-        if (contadorAciertosConcursante < contadorAciertosCazador){
+        if (contadorAciertosConcursante < contadorAciertosCazador) {
             System.out.println("Que mala pata, has perdido el juego y los dineros ganados");
         } else {
             // Continuamos el juego
             File ficheroRonda3 = new File(".\\src\\ficheros\\ejercicio43.txt");
             HashMap<String, String> ronda3 = leerFichero(ficheroRonda3);
-            
+
             System.out.println("Comienza la última ronda");
+            contadorAciertosCazador = 0;
+            contadorAciertosConcursante = 0;
+
+            tiempoFin = System.currentTimeMillis() + 120000;
+            for (String key : ronda1.keySet()) {
+                System.out.println(key);
+                respuestaIn = reader.nextLine();
+                if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda1.get(key).replace(" ", ""))) {
+                    contadorAciertosConcursante++;
+                }
+                if (System.currentTimeMillis() > tiempoFin) {
+                    System.out.println("Se acabó el tiempo!!");
+                    break;
+                }
+            }
+
+            //Simulamos que juega el cazador
+            for (int i = 0; i < 11; i++) {
+                double random = Math.random();
+                if (random < 0.50) {
+                    contadorAciertosCazador++;
+                }
+            }
+
+            System.out.println("\nACIERTOS CAZADOR: " + contadorAciertosCazador + "\nACIERTOS JUGADOR: " + contadorAciertosConcursante + "\n");
+            
+            if (contadorAciertosCazador >= contadorAciertosConcursante){
+                System.out.println("Que mala pata, has perdido contra el cazador, devuelve los dineros que te vas para casa");
+            } else {
+                System.out.println("Que bien!!! Has ganado, te llevas " + dineros + " dineros");
+            }
+            
         }
     }
 
