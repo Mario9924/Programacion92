@@ -14,8 +14,7 @@ import java.util.Scanner;
  * adelante poder guardar la información, recuperarla y/o borrarla si se indica.
  *
  * @author Mario Gutiérrez
- * @see
- * https://classroom.google.com/c/ODA3NDY5OTY5MTcz/a/ODYyOTYzMjczMzkw/details
+ * @see https://classroom.google.com/c/ODA3NDY5OTY5MTcz/a/ODYyOTYzMjczMzkw/details
  * @version 1.0
  */
 public class Ejercicio3 {

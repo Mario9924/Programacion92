@@ -142,7 +142,7 @@ public class Ejercicio4 {
             for (String key : ronda3.keySet()) {
                 System.out.println(key);
                 respuestaIn = reader.nextLine();
-                if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda1.get(key).replace(" ", ""))) {
+                if (respuestaIn.replace(" ", "").equalsIgnoreCase(ronda3.get(key).replace(" ", ""))) {
                     contadorAciertosConcursante++;
                 } else {
                     System.out.println("No es correcto");
