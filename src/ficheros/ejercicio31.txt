@@ -1,0 +1,90 @@
+¿Qué malvado brujo tiene un gato llamado Azrael;Gargamel
+¿De qué color es el pelo de Naruto;Rubio
+¿De quiénes son amigos Pato, Elly, Pajaroto y Loula;De Pocoyó
+¿Cómo se llama la cabra que acompaña a Heidi;Copito de Nieve
+¿Cuál es el pueblo natal de Paquita Salas?;Navarrete
+¿Qué instrumento toca Lisa Simpson?; El saxofón
+¿De qué país es originario el queso brie?;Francia
+¿Cuál es la moneda de México?;Peso mexicano
+¿De qué colores es la bandera de Japón?;Blanca y roja
+¿Qué fruto seco lleva en su interior un Ferrero Rocher?;De avellana
+¿Cómo se llaman las crías de los conejos?;Gazapos
+¿Quién escribió 'Cumbres borrascosas'?;Emily Brontë
+¿El título del primer libro de Jane Austen?;Sentido y sensibilidad
+¿Quién inventó la bombilla?;Thomas Edison
+¿Cómo se llamaba el marido de Frida Kahlo?;Diego Rivera
+¿Quién pintó la Mona Lisa?;Leonardo da Vinci
+¿Quién pintó Las meninas?;Velázquez
+¿Cómo se llama el principal río de Egipto?;El Nilo
+¿Cuántos corazones tiene un pulpo?;Tres
+¿Cuál es el órgano más grande del cuerpo humano?;La piel
+¿Qué significan las siglas JDk?;Java Development Kit
+¿En el libro 'La metamorfosis' de Kafka en que insecto se transforma el protagonista?;En cucaracha
+¿En qué año se produjo la caída del Muro de Berlín?;1989
+¿Dónde viven los presidentes de EEUU?;En la Casa Blanca
+¿Cómo murió María Antonieta?;Decapitada
+¿En qué año se firmó el Tratado de Versalles?;1919
+¿Quién fundó Roma?;Rómulo y Remo
+¿Quién es el principal enemigo de Batman?;El Joker
+¿Cuál es el punto más alto de España?;El Teide
+¿La aracnofobia es el miedo a?;Las arañas
+¿Cuáles son los apellidos de las familias enfrentadas en Romeo y Julieta?;Los Montesco y los Capuleto
+¿En qué parte del cuerpo humano se encuentra el hueso más pequeño?;La oreja
+¿Cuál es el único metal que es líquido a temperatura ambiente?;Mercurio
+¿Qué nombre recibe la carne de ciervo en el menú de un restaurante?Venado
+¿Cuántos países forman la Unión Europea?;27
+¿Siglas de la asignatura Entornos de Desarrollo?;ED
+¿Cuántos países forman la Unión Europea?;27
+¿Quién escribió 'El retrato de Dorian Grey'?;Oscar Wilde
+¿Quién escribió 'Alicia en el país de las maravillas'?;Lewis Carrol
+¿Completa la frase "We're all born naked the rest is ..."?;Drag
+¿Cuál es la capital de Japón?;Tokio
+¿Quién escribió "Cien años de soledad"?;Gabriel García Márquez
+¿Cuánto es 9 x 8?;72
+¿Qué planeta es conocido como el planeta rojo?;Marte
+¿En qué continente está Egipto?;África
+¿Cuál es el océano más grande del mundo?;Océano Pacífico
+¿Quién pintó la Mona Lisa?;Leonardo da Vinci
+¿Cuál es el símbolo químico del oro?;Au
+¿Cuántos días tiene un año bisiesto?;366
+¿Qué idioma se habla principalmente en Brasil?;Portugués
+¿Quién fue el primer hombre en llegar a la Luna?;Neil Armstrong
+¿Cuál es el animal terrestre más rápido?;Guepardo
+¿Qué gas necesitan las plantas para hacer la fotosíntesis?;Dióxido de carbono
+¿Cuál es la montaña más alta del mundo?;Monte Everest
+¿En qué país se encuentra la Torre Eiffel?;Francia
+¿Quién compuso la Novena Sinfonía?;Ludwig van Beethoven
+¿Cuál es el río más largo del mundo?;Nilo
+¿Cuánto es la raíz cuadrada de 144?;12
+¿Qué instrumento mide la temperatura?;Termómetro
+¿Cuál es el país más poblado del mundo?;India
+¿Qué órgano bombea la sangre en el cuerpo humano?;Corazón
+¿Quién descubrió América en 1492?;Cristóbal Colón
+¿Cuál es el metal líquido a temperatura ambiente?;Mercurio
+¿Cuántos continentes existen?;7
+¿Qué deporte practica Rafael Nadal?;Tenis
+¿Cuál es la moneda oficial de Estados Unidos?;Dólar
+¿Qué animal es conocido como el rey de la selva?;León
+¿Cuál es el idioma más hablado del mundo?;Chino mandarín
+¿En qué año comenzó la Segunda Guerra Mundial?;1939
+¿Qué vitamina produce el cuerpo al exponerse al sol?;Vitamina D
+¿Cuál es la capital de Australia?;Canberra
+¿Qué elemento químico tiene el símbolo O?;Oxígeno
+¿Quién escribió "Don Quijote de la Mancha"?;Miguel de Cervantes
+¿Cuál es el país con forma de bota?;Italia
+¿Qué animal pone huevos y es mamífero?;Ornitorrinco
+¿Cuántos lados tiene un hexágono?;6
+¿Qué estrella está en el centro del sistema solar?;Sol
+¿Cuál es el proceso por el que el agua se convierte en vapor?;Evaporación
+¿Quién fue Albert Einstein?;Físico
+¿Cuál es el idioma oficial de México?;Español
+¿Qué país ganó el Mundial de fútbol de 2010?;España
+¿Cuál es el hueso más largo del cuerpo humano?;Fémur
+¿Qué animal puede cambiar de color?;Camaleón
+¿Cuál es la capital de Canadá?;Ottawa
+¿Qué aparato se usa para observar estrellas?;Telescopio
+¿Cuánto es 15 + 27?;42
+¿Qué país tiene forma de hexágono en los mapas?;Francia
+¿Cuál es el idioma oficial de Alemania?;Alemán
+¿Qué científico formuló la teoría de la relatividad?;Albert Einstein
+¿Cuál es el desierto más grande del mundo?;Sahara
