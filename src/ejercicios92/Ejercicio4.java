@@ -21,23 +21,36 @@ public class Ejercicio4 {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
-    
-    public static HashMap<String, String> leerFichero(File ficheroIn){
+
+    public static HashMap<String, String> leerFichero(File ficheroIn) {
         HashMap<String, String> preguntas = new HashMap<>();
         try {
             // Volcamos la información del fichero en un hashmap de modo que la información queda así; Key-Pregunta , Value-Respuesta
             Scanner rf = new Scanner(ficheroIn);
-            while (rf.hasNext()){
+            while (rf.hasNext()) {
                 String[] informacion = rf.nextLine().split(";");
                 preguntas.put(informacion[0], informacion[1]);
             }
             rf.close();
-        } catch (FileNotFoundException ex) {
-            System.getLogger(Ejercicio4.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } catch (FileNotFoundException fnfex) {
+            System.err.println("Error al intentar acceder al fichero" + fnfex);
         }
         return preguntas;
     }
-    
-    
+
+    public HashMap<String, String> leerFicheroMultiple(File ficheroIn) {
+        HashMap<String, String> preguntas = new HashMap<>();
+        try {
+            // Volcamos la información del fichero en un hashmap de modo que la información queda así; Key-Pregunta , Value-Respuesta
+            Scanner rf = new Scanner(ficheroIn);
+            while (rf.hasNext()) {
+                String[] informacion = rf.nextLine().split("\\|");
+                preguntas.put(informacion[0], informacion[1]);
+            }
+            rf.close();
+        } catch (FileNotFoundException fnfex) {
+            System.err.println("Error al intentar acceder al fichero" + fnfex);
+        }
+        return preguntas;
+    }
 }

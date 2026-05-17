@@ -1,0 +1,40 @@
+¿Cuál es la capital de Francia?|París;Madrid;Roma
+¿Cuál es el planeta más grande del sistema solar?|Júpiter;Marte;Venus
+¿Cuántos lados tiene un triángulo?|3;4;5
+¿Quién escribió "Don Quijote de la Mancha"?|Miguel de Cervantes;Pablo Neruda;Federico García Lorca
+¿Cuál es el océano más grande del mundo?|Pacífico;Atlántico;Índico
+¿Cuál es el resultado de 9 x 8?|72;81;64
+¿En qué continente está Egipto?|África;Europa;Asia
+¿Cuál es el animal terrestre más rápido?|Guepardo;León;Caballo
+¿Cuál es el idioma oficial de Brasil?|Portugués;Español;Francés
+¿Cuántos días tiene un año bisiesto?|366;365;364
+¿Cuál es la moneda oficial de Japón?|Yen;Won;Euro
+¿Quién pintó la Mona Lisa?|Leonardo da Vinci;Vincent van Gogh;Pablo Picasso
+¿Cuál es el metal cuyo símbolo químico es Au?|Oro;Plata;Cobre
+¿Cuál es la montaña más alta del mundo?|Everest;K2;Aconcagua
+¿Cuál es el río más largo del mundo?|Nilo;Amazonas;Danubio
+¿Cuántos continentes hay en la Tierra?|7;5;6
+¿Cuál es el país más grande del mundo?|Rusia;China;Canadá
+¿Quién descubrió América en 1492?|Cristóbal Colón;Fernando de Magallanes;Américo Vespucio
+¿Cuál es el resultado de 15 + 27?|42;39;45
+¿Qué gas necesitan las plantas para la fotosíntesis?|Dióxido de carbono;Oxígeno;Nitrógeno
+¿Cuál es el hueso más largo del cuerpo humano?|Fémur;Radio;Tibia
+¿Cuál es el país conocido como la tierra del sol naciente?|Japón;China;Corea del Sur
+¿Cuántos colores tiene el arcoíris?|7;5;6
+¿Cuál es el mamífero más grande del mundo?|Ballena azul;Elefante;Hipopótamo
+¿Cuál es el resultado de 100 ÷ 4?|25;20;30
+¿Quién fue el primer hombre en pisar la Luna?|Neil Armstrong;Yuri Gagarin;Buzz Aldrin
+¿Cuál es la capital de Italia?|Roma;Milán;Venecia
+¿Cuál es el órgano principal del sistema circulatorio?|Corazón;Pulmón;Hígado
+¿Cuál es el proceso por el cual el agua pasa a vapor?|Evaporación;Condensación;Solidificación
+¿Cuántos minutos tiene una hora?|60;50;70
+¿Cuál es el desierto más grande del mundo?|Antártico;Sahara;Gobi
+¿Cuál es la fórmula química del agua?|H2O;CO2;O2
+¿Quién escribió "Cien años de soledad"?|Gabriel García Márquez;Mario Vargas Llosa;Julio Cortázar
+¿Cuál es el país famoso por la Torre Eiffel?|Francia;Italia;Alemania
+¿Cuántos planetas tiene el sistema solar?|8;7;9
+¿Cuál es el animal símbolo de Australia?|Canguro;Tigre;Panda
+¿Cuál es el resultado de 7²?|49;42;56
+¿Qué instrumento mide la temperatura?|Termómetro;Barómetro;Anemómetro
+¿Cuál es la capital de Argentina?|Buenos Aires;Santiago;Lima
+¿Quién formuló la teoría de la relatividad?|Albert Einstein;Isaac Newton;Galileo Galilei
